@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_to_submitted</fullName>
+    <active>true</active>
+    <description>Doesn&apos;t allow the status to be turned to submitted unless they have provided a submitted date</description>
+    <errorConditionFormula>AND(ISBLANK( Submitted_Date__c ),(TEXT(Status__c) = &quot;Submitted&quot;))</errorConditionFormula>
+    <errorMessage>You cannot change the status to submitted without providing a submitted date</errorMessage>
+</ValidationRule>

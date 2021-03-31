@@ -1,0 +1,43 @@
+<apex:page standardController = "Course_Invoice__c" renderAs="pdf" standardStylesheets="false">
+        <apex:stylesheet value = "{!$Resource.Invoice}"/>
+        <center>
+            <h1>
+                {!Course_Invoice__c.Name}
+                <br/>
+                    {!Course_Invoice__c.Invoice_Type__c} Invoice
+                    <br/>
+                    <apex:outputText value = "{0,date,dd.MM.yyyy}" >
+                        <apex:param value = "{!NOW()}"/>
+                    </apex:outputText>
+                
+                
+                <!-- Bill To Code --> 
+                <h2>
+                    Bill to:
+                </h2>
+                <div style ="text-align: left;"> 
+                    {!Course_Invoice__c.Course_name__r.Account.Name}
+                <br/>
+                    {!Course_Invoice__c.Course_name__r.Account.BillingStreet}
+                <br/>
+                 {!Course_Invoice__c.Course_name__r.Account.BillingCity}
+                <br/>
+                 {!Course_Invoice__c.Course_name__r.Account.BillingPostalCode}
+                <br/>
+                {!Course_Invoice__c.Course_name__r.Account.BillingCountry}
+                </div>
+                <!-- End of Bill To Code --> 
+            </h1>
+        </center>
+        <br/>
+        <apex:pageBlock>
+            <apex:pageBlockTable value = "{!Course_Invoice__c.Invoice_Items__r}" var = "items" align = "center" border = "1px" headerClass =  "columnHeader">
+                <apex:column value = "{!items.Date__c}"  width = "10%"/>
+                <apex:column value = "{!items.Expense_Type__c}" rendered="{! If (Course_Invoice__c.Invoice_Type__c == 'Expense' , true,false)}"/>
+                <apex:column value = "{!items.Description__c}"/>
+                <apex:column value = "{!items.Name}" rendered="{! If (Course_Invoice__c.Invoice_Type__c == 'Service' , true,false)}"/>
+                <apex:column value = "{!items.Cost__c}" rendered="{! If (Course_Invoice__c.Invoice_Type__c == 'Service' , true,false)}"/>
+                <apex:column value = "{!items.Total_Pay__c}" rendered="{! If (Course_Invoice__c.Invoice_Type__c == 'Service' , true,false)}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

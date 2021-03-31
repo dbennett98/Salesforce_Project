@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Future_Date</fullName>
+    <active>true</active>
+    <description>Stops future dates being added incorrectly</description>
+    <errorConditionFormula>OR( (Submitted_Date__c &gt; TODAY()) , (Paid_Date__c ) &gt;  TODAY())</errorConditionFormula>
+    <errorMessage>Cannot enter a future date for Submitted Date or Paid Date</errorMessage>
+</ValidationRule>

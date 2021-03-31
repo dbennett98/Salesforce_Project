@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Name__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Course</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Scheduled</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Course Invoices</relationshipLabel>
+    <relationshipName>Course_Invoices1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
